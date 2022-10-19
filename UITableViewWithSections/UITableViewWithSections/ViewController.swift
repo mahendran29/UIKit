@@ -35,6 +35,7 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
         super.viewDidLayoutSubviews()
         
         tableView.frame = view.bounds
+        tableView.backgroundColor = .black
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -55,6 +56,8 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+        cell.backgroundColor = .black
+        cell.textLabel?.textColor = .white
         cell.textLabel?.text = tableViewData[indexPath.section][indexPath.row]
         
         return cell
@@ -63,7 +66,10 @@ class ViewController: UIViewController,UITableViewDelegate,UITableViewDataSource
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let sectionButton = UIButton()
         sectionButton.setTitle(alphabets[section], for: .normal)
-        sectionButton.backgroundColor = .systemBlue
+        sectionButton.backgroundColor = .black
+        sectionButton.contentHorizontalAlignment = UIControl.ContentHorizontalAlignment.left
+        sectionButton.titleEdgeInsets = UIEdgeInsets(top: 0, left: 8, bottom: 0, right: 0)
+        sectionButton.layer.cornerRadius = 3
         sectionButton.tag = section
         
         sectionButton.addTarget(self, action: #selector(self.hideSection(sender: )), for: .touchUpInside)
